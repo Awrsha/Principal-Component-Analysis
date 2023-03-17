@@ -1,4 +1,4 @@
-## PDA (Image Processing Project)
+## PCA (Image Processing Project)
 
 One of the conventional techniques for dimensionality reduction is **PCA** or **Principal Component Analysis**. Usually, it is not possible to work with large data with many dimensions, and we need to remove some dimensions that are not very important, if possible, before processing. In this project, as an example, we have tried to examine the data in the matrix of an image and at the end we have reduced one of the dimensions of the image. The initial image is the following photo:
 
