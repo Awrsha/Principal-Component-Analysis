@@ -2,6 +2,11 @@
 
 One of the conventional techniques for dimensionality reduction is **PCA** or **Principal Component Analysis**. Usually, it is not possible to work with large data with many dimensions, and we need to remove some dimensions that are not very important, if possible, before processing. In this project, as an example, we have tried to examine the data in the matrix of an image and at the end we have reduced one of the dimensions of the image. The initial image is the following photo:
 
+</div>
+<div align="center">
+<img align="center" height="250" width="375" alt="first" src="https://s2.uupload.ir/files/نمودار7-667x500_1j0l.jpg"/></div>
+<br />
+
 Massive data in today's world is not only a big challenge for computing hardware, but also an obstacle for machine learning algorithms. One of the methods used to reduce the volume and complexity of data is Principal Component Analysis or PCA. In PCA analysis, our goal is to find different patterns in the desired data; More precisely, in this analysis, we try to obtain the correlation between the data.
 
 If there is a strong correlation between our data in two or more specific dimensions, those dimensions can be converted into one dimension; In this way and by reducing the dimension, the complexity and volume of data is greatly reduced. If we want to express the ultimate goal of PCA analysis, we should say: the goal is to find the direction (dimension) with the most variance of the data and reduce the dimension; So that the least amount of important data is lost.
@@ -114,6 +119,11 @@ We use Python's matplotlib library to plot the data. This library is the richest
 
 Using the plt.figure method, we have created a frame and coordinate plane, and then using the fig.add_subplot method, we tell the program to draw our diagram in three dimensions and on the whole page. The ax.scatter method is also responsible for receiving the data we want. Here, the c parameter indicates the color of the graph and the marker parameter indicates the sign of each point in the graph. Finally, after naming the axes, we draw the diagram. By calling the function for the nparr matrix, the following graph is obtained:
 
+</div>
+<div align="center">
+<img align="center" height="250" width="375" alt="graph1" src="https://s2.uupload.ir/files/graph1_wmdh.png"/></div>
+<br />
+
 This graph shows that the color of most of the pixels in the image is close to red and some of the pixels are blue. This is completely in line with our expectations. (corresponds to the existing image)
 
 ## Find the mean of the data The first step is to perform PCA
@@ -148,9 +158,20 @@ The function of this function is quite clear. At first, we keep the number of da
 As it was clear from the diagram drawn in the previous part, the intensity of red color is higher than the other two colors.
 
 ## Construction of the covariance matrix and its Python code
+At this stage, we must first go to the summary center so that our work will be easier in the next steps. To understand this issue, we pay attention to the following two images:
 
+</div>
+<div align="center">
+<img align="center" height="250" width="375" alt="graph2" src="https://s2.uupload.ir/files/graph2_fgkt.png"/></div>
+<br />
+
+</div>
+<div align="center">
+<img align="center" height="250" width="375" alt="graph3" src="https://s2.uupload.ir/files/graph3_brn2.png"/></div>
+<br />
 
 To move the data from the desired location on the coordinate plane to the center of the coordinates (according to what is clear in the image above), it is enough to subtract the average of the data from each data. The resulting matrix after performing this operation is called mean deviation.
+
 
 ```python:
 def mean_deviation_func(nparr,  mean):
@@ -283,6 +304,12 @@ explained_variance(eigenvalues)
 ```
 The resulting graph is as follows:
 
+</div>
+<div align="center">
+<img align="center" height="250" width="375" alt="graph5" src="https://s2.uupload.ir/files/graph5_hhmx.png"/></div>
+<br />
+
+
 It is clear that by removing the blue dimension data, not much data is lost and this dimension reduction can be done.
 
 Now, it is enough to first sort the eigenvalues ​​and eigenvectors from the largest to the smallest and extract the first two eigenvectors as columns of the w matrix and build this matrix. In the following code, we have done this process:
@@ -346,6 +373,12 @@ new_arr  =  nparr.dot(matrix_w)
 show_data_2d(new_arr)
 ```
 The resulting graph is as follows:
+
+</div>
+<div align="center">
+<img align="center" height="250" width="375" alt="graph6" src="https://s2.uupload.ir/files/graph6_r95e.png"/></div>
+<br />
+
 Now everything is ready to create a new photo and get an output from it. First, instead of the reduced third dimension, we put zero and save the new image using the pillow library and the save method.
 
 Note: we use astype to convert datatype to unit8; Because the PIL library accepts such data.
@@ -362,6 +395,15 @@ new_image  =  Image.fromarray(np.reshape(new_arr_with_zeros,  (height,  width,  
 new_image.save("new_deset.jpg")
 ```
 At the end, we compare the new image with the original image:
+
+</div>
+<div align="center">
+<img align="center" height="250" width="375" alt="graph7" src="https://s2.uupload.ir/files/نمودار7-667x500_(1)_0qg1.jpg"/></div>
+<br />
+</div>
+<div align="center">
+<img align="center" height="250" width="375" alt="graph8" src="https://s2.uupload.ir/files/نمودار8-667x500_mhhy.jpg"/></div>
+<br />
 
 ## Conclusion
 In this project, we learned about one of the dimension reduction techniques called PCA, and it is possible to reduce the dimension of different datasets by using it. We coded in detail in this project for educational purposes; Instead of all these steps, PCA analysis can be performed using the scikit learn library in Python using the following code:
